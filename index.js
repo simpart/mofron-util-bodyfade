@@ -2,15 +2,15 @@ const Fade = require("mofron-effect-fade");
 
 mofron.document.style({ 'opacity': 0 });
 mofron.document.effect([
-    new Fade({ value: true, speed: 1500, eid: 0, tag: "in" }),
-    new Fade({ value:false, speed: 1500, eid: 1, tag: "out" })
+    new Fade({ value: true, speed: 1000, eid: 0, tag: "in" }),
+    new Fade({ value:false, speed: 1000, eid: 1, tag: "out" })
 ]);
 
 module.exports = {
-    fadein: () => {
+    fadein: (fn) => {
         try {
             setTimeout(() => {
-                mofron.document.execEffect(0);
+                mofron.document.execEffect(0,fn);
             },100);
 	} catch (e) {
             console.error(e.stack);
@@ -18,9 +18,9 @@ module.exports = {
         }
     },
     
-    fadeout: () => {
+    fadeout: (fn) => {
         try {
-            mofron.document.execEffect(1);
+            mofron.document.execEffect(1,fn);
 	} catch (e) {
             console.error(e.stack);
             throw e;
