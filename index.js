@@ -1,16 +1,17 @@
 const Fade = require("mofron-effect-fade");
 
-mofron.document.style({ 'opacity': 0 });
-if (null === mofron.document.effect({ tag:'BodyFade', modname:'Fade' })) {
+//mofron.document.style({ 'opacity': 0 });
+if (null === mofron.document.effect({ modname:'Fade' })) {
     mofron.document.effect([
-        new Fade({ tag:'BodyFade', value:true,  speed:1000, eid:0, tag:"in" }),
-        new Fade({ tag:'BodyFade', value:false, speed:1000, eid:1, tag:"out" })
+        new Fade({ value:true,  speed:1000, eid:0, tag:"in" }),
+        new Fade({ value:false, speed:1000, eid:1, tag:"out" })
     ]);
 }
 
 module.exports = {
     fadein: (fn) => {
         try {
+	    mofron.document.style({ 'opacity': 0 });
             setTimeout(() => {
                 mofron.document.execEffect(0,fn);
             },100);
